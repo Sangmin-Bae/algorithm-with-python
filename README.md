@@ -103,12 +103,12 @@ if __name__ == "__main__":
  
 ## 진행 현황
  
-| 사이트 | 풀이 수 |
-|--------|------|
-| Programmers | 5 |
-| Baekjoon | - |
-| LeetCode | - |
-| Codewars | - |
+| 사이트      | 풀이 수 |
+|-------------|:----:|
+| Programmers |  6  |
+| Baekjoon    |  -  |
+| LeetCode    |  -  |
+| Codewars    |  -  |
  
 ---
  

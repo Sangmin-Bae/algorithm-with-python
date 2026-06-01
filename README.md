@@ -61,6 +61,7 @@ algorithm-with-python/
 | `two_pointer_` | 투 포인터    |
 | `sliding_`     | 슬라이딩 윈도우 |
 | `math_`        | 수학       |
+| `simulation_`  | 시뮬레이션    |
 
 ---
 

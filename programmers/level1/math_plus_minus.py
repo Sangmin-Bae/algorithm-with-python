@@ -6,7 +6,7 @@
     문제명     : 음양 더하기
     유형       : Math / Implementation
     링크       : https://school.programmers.co.kr/learn/courses/30/lessons/76501
-    풀이일자   : 2025-05-17
+    풀이일자   : 2026-05-17
 ===================================================================================
 [문제 요약]
     절대값 배열 absolutes와 부호 배열 signs가 주어질 때, signs[i]가 True이면

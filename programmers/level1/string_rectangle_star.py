@@ -94,19 +94,26 @@
 [복잡도 분석]
     N = n (최대 1,000), M = m (최대 1,000)
 
-    Mine_one   - 시간: O(M×N) | 공간: O(N)   - print() M회, '*'×N 문자열 매번 생성
-    Mine_two   - 시간: O(M×N) | 공간: O(N)   - 제너레이터: 한 행씩 생성, join 시 O(M×N)
-    Mine_three - 시간: O(M×N) | 공간: O(M×N) - 리스트 컴프리헨션으로 전체 생성 후 언패킹
-    Mine_four  - 시간: O(M×N) | 공간: O(M×N) - 문자열 산술로 전체 생성 후 출력
-    Best       - 시간: O(M×N) | 공간: O(N)   - Mine_two와 동일, 주석 보강
+    Mine_one   - 시간: O(M×N) | 공간: O(N)   - print() M번, 한 행씩 생성 후 즉시 출력
+    Mine_two   - 시간: O(M×N) | 공간: O(M×N) - join 결과 문자열 O(M×N) 생성, print() 1번
+    Mine_three - 시간: O(M×N) | 공간: O(M×N) - 리스트 O(M×N) + join 결과 O(M×N)
+    Mine_four  - 시간: O(M×N) | 공간: O(M×N) - 산술 결과 문자열 O(M×N) 생성, print() 1번
+    Best       - 시간: O(M×N) | 공간: O(M×N) - Mine_two와 동일, 주석 보강
     Sub        - 시간: O(M×N) | 공간: O(N)   - Mine_one과 동일, 주석 보강
 
-    print() 호출 횟수:
-        Mine_one/Sub: M번 (행마다 호출) → I/O 비용 M번
-        Mine_two/Best: 1번 (join 후 한 번에 출력) → I/O 비용 1번
-        Mine_three: 1번 (언패킹 후 한 번에 출력)
-        Mine_four: 1번 (문자열 생성 후 한 번에 출력)
-    → 대규모(M=1,000)에서 Mine_one은 print() 1,000회 I/O 부담
+    공간/I/O 트레이드오프:
+        Mine_one(Sub): 공간 O(N) + I/O M번   → 한 행씩 생성, 시스템 콜 M번
+        Mine_two(Best): 공간 O(M×N) + I/O 1번 → join 결과 전체 생성, 시스템 콜 1번
+        Mine_two의 제너레이터: 한 행씩 yield하지만 join()이 최종적으로
+            전체를 하나의 문자열로 합치므로 결과물은 O(M×N)
+        Mine_three/four도 동일하게 O(M×N)
+
+    Best 선정 근거 (Mine_two):
+        M=1,000일 때 시스템 콜 1,000번 vs 메모리 ~1MB 중 시스템 콜 비용이 더 큼
+        시스템 콜: 사용자 모드 → 커널 모드 전환 비용 → M번 반복은 큰 부담
+        메모리 ~1MB: 이 문제 제약에서 사실상 문제없는 수준
+        → I/O 1번인 Mine_two가 이 제약 조건에서 더 적합
+        Mine_three/four도 I/O 1번이나 Mine_two 대비 가독성 낮음
 """
 
 import io
@@ -146,9 +153,11 @@ def solution_mine_two(n: int, m: int) -> None:
         '\n'.join(...): 제너레이터를 순회하며 '\n'으로 연결
         print() 1회 호출 → I/O 비용 최소화
 
-    제너레이터 메모리 효율:
-        리스트 컴프리헨션 [*n for _ in range(m)]: 전체 리스트 메모리 보유
-        제너레이터: join()이 순회할 때 한 행씩 생성 → 공간 O(N)
+    제너레이터 공간 특성:
+        ('*' * n for _ in range(m)): 한 행씩 yield → 생성 중 공간 O(N)
+        join()이 전체를 하나의 문자열로 합치는 순간 결과물 O(M×N) 생성
+        → 제너레이터 자체는 O(N)이나 join 결과는 O(M×N)
+        Mine_three(리스트 전체 O(M×N) 생성 후 join)보다는 중간 리스트 없음
     """
     print('\n'.join('*' * n for _ in range(m)))
 
@@ -197,12 +206,18 @@ def solution_mine_four(n: int, m: int) -> None:
 # =================================================================================
 def solution_best(n: int, m: int) -> None:
     """
-    제너레이터 + join으로 메모리 효율과 I/O 횟수를 최소화한 최적 풀이
+    제너레이터 + join으로 I/O 횟수를 최소화한 최적 풀이
 
-    mine_two와 동일한 로직, 근거 주석 보강:
-        제너레이터: 각 행을 순차적으로 생성, 전체 리스트 메모리 불필요
-        join(): 제너레이터 1회 순회로 결합, '\n'으로 행 구분
-        print() 1회: 시스템 콜 1번, I/O 부담 최소
+    mine_two와 동일한 로직, 선정 근거 주석 보강:
+        제너레이터: 각 행을 순차적으로 yield, 중간 리스트 생성 없음
+        join(): 제너레이터 순회하며 결합 → 최종 결과 문자열 O(M×N)
+        print() 1회: 시스템 콜 1번
+
+    Best 선정 근거:
+        공간: join 결과 O(M×N) (Mine_one의 O(N)보다 큼)
+        I/O:  시스템 콜 1번 (Mine_one의 M번보다 적음)
+        트레이드오프에서 I/O M번이 메모리 ~1MB보다 비용이 크다고 판단
+        Mine_three/four도 I/O 1번이나 가독성이 낮아 Best 부적합
     """
     print('\n'.join('*' * n for _ in range(m)))
 

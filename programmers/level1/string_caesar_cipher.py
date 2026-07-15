@@ -68,9 +68,7 @@
     solution_mine_one: ord/chr + 아스키 수학으로 직접 shift
     solution_mine_two: maketrans + translate 일괄 치환
 
-    solution_mine_two 설명 정정:
-        Simon 설명: "lower[:n] + lower[n:]"
-        실제 코드:  "lower[n:] + lower[:n]"  ← 코드가 맞음, 설명이 틀림
+    solution_mine_two 슬라이싱 주의점:
         lower[:n] + lower[n:] = 원본 (shift 없음)
         lower[n:] + lower[:n] = n만큼 shift ✓
 

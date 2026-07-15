@@ -73,7 +73,7 @@
     solution_mine_four : bisect O(log k) 삽입 + del O(k) 삭제
     solution_mine_five : bisect + 음수 트릭으로 O(1) 삭제, 개념 학습 목적
 
-    heappop 동작 정정 (Simon 설명 보완):
+    heappop 동작:
         "앞의 부모 원소들을 한칸씩 앞으로" → 정확히는:
         마지막 원소를 루트(hof[0])로 이동 후 sift-down
         (부모들을 이동하는 게 아니라 마지막 → 루트 → sift-down)

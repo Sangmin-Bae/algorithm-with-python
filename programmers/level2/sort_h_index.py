@@ -64,7 +64,7 @@
         i=2: 0 >= 1? No
         → for 루프 종료 → return 0 (h=0이 맞음)
 
-    Simon의 solution_two return len(desc_citations) 케이스와 대비:
+    solution_two return len(desc_citations) 케이스와 대비:
         solution_two: 모든 인용횟수 >= 편수인 최적 케이스 처리
             [99,98,97]: for 루프 break 없이 끝 → return 3
         solution_ref_two: 모든 인용횟수 = 0인 최악 케이스 처리
@@ -223,7 +223,7 @@ def solution_ref_two(citations: list[int]) -> int:
     return 0의 의미:
         모든 인용횟수가 0일 때 → for 루프 탈출 조건 없음 → return 0
         예) [0,0,0]: 0>=3? No, 0>=2? No, 0>=1? No → return 0 (h=0 정답)
-        Simon의 solution_two return len(...)과 대비:
+        solution_two return len(...)과 대비:
             내림차순 최적 케이스 처리 vs 오름차순 최악 케이스 처리
     """
     citations = sorted(citations)

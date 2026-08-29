@@ -106,11 +106,11 @@ if __name__ == "__main__":
 ## 진행 현황
  
 | 사이트      | 풀이 수 |
-|-------------|:----:|
-| Programmers | 106  |
-| Baekjoon    |  -   |
-| LeetCode    |  -   |
-| Codewars    |  -   |
+|-------------|:-------:|
+| Programmers |   107   |
+| Baekjoon    |    -    |
+| LeetCode    |    -    |
+| Codewars    |    -    |
  
 ---
  

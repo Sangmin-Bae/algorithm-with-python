@@ -107,7 +107,7 @@ if __name__ == "__main__":
  
 | 사이트      | 풀이 수 |
 |-------------|:-------:|
-| Programmers |   133   |
+| Programmers |   134   |
 | Baekjoon    |    -    |
 | LeetCode    |    -    |
 | Codewars    |    -    |

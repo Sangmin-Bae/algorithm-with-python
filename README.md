@@ -24,6 +24,12 @@ algorithm-with-python/
 │   ├── level1/
 │   ├── level2/
 │   └── level3/
+├── swea/
+│   ├── d1/
+│   ├── d2/
+│   ├── d3/
+│   ├── d4/
+│   └── ...
 ├── baekjoon/
 │   ├── greedy/
 │   ├── dp/
@@ -108,6 +114,7 @@ if __name__ == "__main__":
 | 사이트      | 풀이 수 |
 |-------------|:-------:|
 | Programmers |   136   |
+| SWEA        |    -    |
 | Baekjoon    |    -    |
 | LeetCode    |    -    |
 | Codewars    |    -    |
@@ -117,6 +124,7 @@ if __name__ == "__main__":
 ## Reference
  
 - [Programmers](https://programmers.co.kr/)
+- [SW Expert Academy](https://swexpertacademy.com/main/main.do)
 - [Baekjoon Online Judge](https://www.acmicpc.net/)
 - [LeetCode](https://leetcode.com/)
 - [Codewars](https://www.codewars.com/)

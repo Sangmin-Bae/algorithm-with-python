@@ -114,7 +114,7 @@ if __name__ == "__main__":
 | 사이트      | 풀이 수 |
 |-------------|:-------:|
 | Programmers |   138   |
-| SWEA        |    21    |
+| SWEA        |    22    |
 | Baekjoon    |    -    |
 | LeetCode    |    -    |
 | Codewars    |    -    |
